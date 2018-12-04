@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+<title>Telefon Rehberi</title>
+<script>
+	function listele() {
+		$.getJSON('http://localhost:8080/TelefonRehberi/RehbereEkle', function(
+				data) {
+			for(i = 0; i < data.length; i++) {
+				rehber = data[i];
+				$("#tbl").append(
+						"<tr>" +
+							"<td>" + rehber.isim + "</td>" +
+							"<td>" + rehber.telefon + "</td>" +
+						"</tr>"
+						);
+				
+			}
+			
+			console.log(data);
+		});
+	}
+</script>
+</head>
+<body>
+	<form action="RehbereEkle" method="POST">
+		İsim : <input type="text" id="isim" name="isim"></input> <br>
+		Telefon : <input type="text" id="telefon" name="telefon"></input> <br>
+		<input type="submit" id="btnSubmit" value="Kaydet"></input>
+	</form>
+
+	<input type="button" id="btnListele" value="Listele"
+		onclick="listele()"></input>
+		
+		<table id="tbl"></table>
+</body>
+</html>
