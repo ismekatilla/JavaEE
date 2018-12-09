@@ -2,6 +2,7 @@ package org.ismek;
 
 public class Rehber {
 
+	static int sayac = 0;
 	private Long id;
 	private String isim;
 	private String telefon;
@@ -15,6 +16,7 @@ public class Rehber {
 	}
 
 	public String getIsim() {
+		
 		return isim;
 	}
 
@@ -28,11 +30,5 @@ public class Rehber {
 
 	public void setTelefon(String telefon) {
 		this.telefon = telefon;
-	}
-	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "Id = " + getId() + "\nAdı = " + getIsim() + "\nTelefon=" + getTelefon();
 	}
 }

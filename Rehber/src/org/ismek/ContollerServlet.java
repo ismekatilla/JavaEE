@@ -43,6 +43,10 @@ public class ContollerServlet extends HttpServlet {
 		case "GETIR":
 			getir(request, response);
 			break;
+		case "SIL":
+			sil(request, response);
+		case "GUNCELLE":
+			guncelle(request, response);
 		default:
 			break;
 		}
@@ -50,19 +54,44 @@ public class ContollerServlet extends HttpServlet {
 
 	}
 	
+	private void guncelle(HttpServletRequest request, HttpServletResponse response) {
+		
+		String rehberId = request.getParameter("rehberId");
+		String isim = request.getParameter("isim");
+		String tel = request.getParameter("tel");
+		
+		Long rehberIdAsLong = Long.valueOf(rehberId);
+		for (Rehber rehber : rehberList) {
+			if (rehber.getId().equals(rehberIdAsLong)) {
+				rehber.setIsim(isim);
+				rehber.setTelefon(tel);
+			}
+		}
+	}
+
+	private void sil(HttpServletRequest request, HttpServletResponse response) {
+		
+		String rehberId = request.getParameter("rehberId");
+		Long rehberIdAsLong = Long.valueOf(rehberId);
+		for (Rehber rehber : rehberList) {
+			if (rehber.getId().equals(rehberIdAsLong)) {
+				rehberList.remove(rehber);
+			}
+		}
+	}
+
 	private void ekle(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String isim = request.getParameter("isim");
 		String tel = request.getParameter("tel");
 		
+		Rehber.sayac++;
+		Long sayac = (long) Rehber.sayac;
+		
 		Rehber rehber = new Rehber();
-		rehber.setId(new Long(rehberList.size() + 1));
+		rehber.setId(sayac);
 		rehber.setIsim(isim);
 		rehber.setTelefon(tel);
 		rehberList.add(rehber);
-
-		String rehberAsJson = gson.toJson(rehber);
-		System.out.println(rehberAsJson);
-		response.getWriter().write(rehberAsJson);
 	}
 	
 	private void getir(HttpServletRequest request, HttpServletResponse response) throws IOException {

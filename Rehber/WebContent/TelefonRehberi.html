@@ -17,7 +17,7 @@
 <title>Telefon Rehberi</title>
 
 </head>
-<body>
+<body onload="listele()">
 
 	<link rel="stylesheet"
 		href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
@@ -69,6 +69,8 @@
 						<table class="table">
 							<thead>
 								<tr>
+									<th scope="col"></th>
+									<th scope="col"></th>
 									<th scope="col">Id</th>
 									<th scope="col">İsim</th>
 									<th scope="col">Telefon</th>
@@ -85,5 +87,6 @@
 			</div>
 		</div>
 	</div>
+	<input type="hidden" id="rehberTekilId">
 </body>
 </html>
