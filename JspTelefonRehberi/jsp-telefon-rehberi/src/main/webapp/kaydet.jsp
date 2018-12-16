@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="org.ismek.*"%>
+<%@ page import="org.ismek.db.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,18 +11,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%!List<Rehber> rehberList = new ArrayList<Rehber>();%>
-
-	<%!void kaydet(HttpServletRequest request) {
-		String isim = request.getParameter("isim");
-		String telefon = request.getParameter("tel");
-		Rehber rehber = new Rehber(isim, telefon);
-		rehberList.add(rehber);
-		System.out.print(rehberList.size());
-	}%>
-
-	<%
-		kaydet(request);
+	<jsp:useBean id="rehber" class="org.ismek.Rehber"></jsp:useBean>
+	<jsp:setProperty property="*" name="rehber"/>
+	<% RehberDao rehberDao = new RehberDao();
+		rehberDao.rehberEkle(rehber);
+		List<Rehber> rehberList = rehberDao.rehberListesiGetir();
+		request.setAttribute("rehberList", rehberList);
 	%>
 
 	<div class="container">
@@ -32,17 +28,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%
-					if (rehberList != null)
-						for (Rehber rehber : rehberList) {
-				%>
-				<tr>
-					<td><%=rehber.getIsim()%></td>
-					<td><%=rehber.getTelefon()%></td>
-				<tr>
-					<%
-						}
-					%>
+				<c:forEach var="r" items="${rehberList}">
+					<tr>
+						<td>${r.getIsim()}</td>
+						<td>${r.getTelefon()}</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

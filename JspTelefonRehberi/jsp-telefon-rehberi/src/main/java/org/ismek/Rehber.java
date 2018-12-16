@@ -25,7 +25,7 @@ public class Rehber {
 		return telefon;
 	}
 
-	public void setTelefon(String telefon) {
+	public void setTel(String telefon) {
 		this.telefon = telefon;
 	}
 }
