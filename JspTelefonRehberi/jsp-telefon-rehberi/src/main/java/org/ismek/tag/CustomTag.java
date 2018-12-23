@@ -1,5 +1,6 @@
 package org.ismek.tag;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import javax.servlet.ServletRequest;
@@ -24,20 +25,40 @@ public class CustomTag extends TagSupport {
 		try {
 			Class<?> clazz = Class.forName(className);
 			System.out.println(clazz.getName());
+			Object instance = clazz.newInstance();
 			
 			ServletRequest request = pageContext.getRequest();
-			String name = request.getParameter("name");
-			String telefon = request.getParameter("telefon");
+			Field[] fields = clazz.getDeclaredFields();
+			for (Field field : fields) {
+				String fieldName = field.getName();
+				String fieldValue = request.getParameter(fieldName);
+				if (fieldValue != null && fieldValue != "") {
+					Method[] methods = clazz.getMethods();
+					for (Method method : methods) {
+						String methodName = method.getName();
+						if (methodName.equalsIgnoreCase("set" + fieldName)) {
+							method.invoke(instance, fieldValue);
+							break;
+						}
+					}
+				}
+			}
 			
 			Method[] methods = clazz.getMethods();
 			for (Method method : methods) {
 				String methodName = method.getName();
-				
+				if (methodName.startsWith("get")) {
+					Object object = method.invoke(instance);
+					if (object != null) {
+						System.out.println(object.toString());
+					}
+				}
 			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return super.doStartTag();
 	}
 }

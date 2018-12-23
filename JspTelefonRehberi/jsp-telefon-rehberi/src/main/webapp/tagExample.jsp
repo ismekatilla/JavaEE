@@ -2,3 +2,4 @@
 <%@ taglib prefix="ct" uri="/WEB-INF/tld/customTag.tld" %>
 
 <ct:custom className="org.ismek.Rehber"></ct:custom>
+<ct:dbSave></ct:dbSave>
