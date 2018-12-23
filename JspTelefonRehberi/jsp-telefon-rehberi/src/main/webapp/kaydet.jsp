@@ -27,7 +27,7 @@
 		Gson gson = new Gson();
 	 	String rehberListAsJson = gson.toJson(rehberList);
 		Cookie cookie = new Cookie("rehberList", rehberListAsJson);
-		cookie.setMaxAge(3600);
+		cookie.setMaxAge(30);
 		response.addCookie(cookie);
 	%>
 

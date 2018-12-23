@@ -28,6 +28,7 @@ public class CustomFilter implements Filter {
 		logger.info(remoteAddr);
 		
 		request.setCharacterEncoding("utf-8");
+		chain.doFilter(request, response);
 	}
 
 	@Override
