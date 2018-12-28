@@ -9,6 +9,11 @@ public class ActorService {
 
 	public List<Actor> findAllActor() {
 		ActorDao actorDao = new ActorDao();
-		return actorDao.findAllActor();
+		return actorDao.findAll();
+	}
+	
+	public Actor saveActor(Actor actor) {
+		ActorDao actorDao = new ActorDao();
+		return actorDao.save(actor);
 	}
 }
