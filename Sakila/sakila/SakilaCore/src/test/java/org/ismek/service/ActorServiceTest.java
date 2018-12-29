@@ -19,4 +19,14 @@ public class ActorServiceTest {
 			System.out.println(actor.getFirstName());
 		}
 	}
+	
+	@Test
+	public void saveActor() {
+		ActorService actorService = new ActorService();
+		Actor actor = new Actor();
+		actor.setFirstName("AAA");
+		actor.setLastName("ABB");
+		Actor savedActor = actorService.saveActor(actor);
+		System.out.println(savedActor.getId());
+	}
 }

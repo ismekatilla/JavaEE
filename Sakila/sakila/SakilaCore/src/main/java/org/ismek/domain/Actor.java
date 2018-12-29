@@ -40,7 +40,14 @@ public class Actor extends BaseDomain {
 
 	@Override
 	public Long getId() {
-		// TODO Auto-generated method stub
 		return actorId;
+	}
+
+	public Long getActorId() {
+		return actorId;
+	}
+
+	public void setActorId(Long actorId) {
+		this.actorId = actorId;
 	}
 }
