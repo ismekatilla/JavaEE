@@ -14,7 +14,7 @@ public class FilmServiceTest {
 	@Test
 	public void findAllFilm() {
 		FilmService filmService = new FilmService();
-		List<Film> filmList = filmService.findAllFilm();
+		List<Film> filmList = filmService.findAll();
 		for (Film film : filmList) {
 			System.out.println(film.getLanguage().getName());
 		}
