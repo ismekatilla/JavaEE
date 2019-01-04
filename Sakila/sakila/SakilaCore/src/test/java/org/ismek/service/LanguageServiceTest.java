@@ -18,7 +18,7 @@ public class LanguageServiceTest {
 	@Test
 	public void findAllLanguage() {
 		LanguageService languageService = new LanguageService();
-		List<Language> languageList = languageService.findAllLanguage();
+		List<Language> languageList = languageService.findAll();
 		for (Language language : languageList) {
 			Set<Film> filmSet = language.getFilmSet();
 			for (Film film : filmSet) {
@@ -42,7 +42,7 @@ public class LanguageServiceTest {
 		language.setLastUpdate(new Date());
 		language.setFilmSet(filmSet);
 		
-		Language savedLanguage = languageService.saveLanguage(language);
+		Language savedLanguage = languageService.save(language);
 		System.out.println(savedLanguage.getId());
 	}
 }

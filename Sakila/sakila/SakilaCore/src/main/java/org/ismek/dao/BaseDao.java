@@ -38,9 +38,18 @@ public class BaseDao <T extends BaseDomain> {
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		try (Session session = sessionFactory.openSession()) {
 			String simpleName = entity.getSimpleName();
-			String lowerCaseSimpleName = simpleName.toLowerCase();
-			Query createQuery = session.createQuery("Select " + lowerCaseSimpleName + " From " + simpleName + " " + lowerCaseSimpleName);
+			Query createQuery = session.createQuery(" From " + simpleName);
 			return (List<T>) createQuery.list();
+		} catch (Exception e) {
+			logger.error(e);
+		}
+		return null;
+	}
+	
+	public T findById(Long entityId) {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		try (Session session = sessionFactory.openSession()) {
+			return session.get(entity, entityId);
 		} catch (Exception e) {
 			logger.error(e);
 		}

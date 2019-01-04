@@ -14,7 +14,7 @@ public class ActorServiceTest {
 	@Test
 	public void findAllActor() {
 		ActorService actorService = new ActorService();
-		List<Actor> actorList = actorService.findAllActor();
+		List<Actor> actorList = actorService.findAll();
 		for (Actor actor : actorList) {
 			System.out.println(actor.getFirstName());
 		}
@@ -26,7 +26,7 @@ public class ActorServiceTest {
 		Actor actor = new Actor();
 		actor.setFirstName("AAA");
 		actor.setLastName("ABB");
-		Actor savedActor = actorService.saveActor(actor);
+		Actor savedActor = actorService.save(actor);
 		System.out.println(savedActor.getId());
 	}
 }
