@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SakilaCore/SakilaCore.iml" filepath="$PROJECT_DIR$/SakilaCore/SakilaCore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SakilaUi/SakilaUi.iml" filepath="$PROJECT_DIR$/SakilaUi/SakilaUi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sakila.iml" filepath="$PROJECT_DIR$/sakila.iml" />
+    </modules>
+  </component>
+</project>

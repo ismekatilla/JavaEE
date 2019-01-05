@@ -9,8 +9,10 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.ismek.domain.Film;
 import org.ismek.domain.Language;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class LanguageServiceTest {
 	
 	private static Logger logger = LogManager.getLogger(LanguageServiceTest.class);

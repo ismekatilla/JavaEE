@@ -5,8 +5,10 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.ismek.domain.Actor;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class ActorServiceTest {
 	
 	private static Logger logger = LogManager.getLogger(ActorServiceTest.class);
