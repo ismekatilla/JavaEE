@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="SakilaUi:war">
-    <output-path>$PROJECT_DIR$/SakilaUi/target</output-path>
-    <root id="archive" name="SakilaUi.war">
-      <element id="artifact" artifact-name="SakilaUi:war exploded" />
-    </root>
-  </artifact>
-</component>
