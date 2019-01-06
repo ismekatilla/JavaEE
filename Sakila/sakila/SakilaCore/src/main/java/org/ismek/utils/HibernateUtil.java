@@ -7,25 +7,22 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
 
-	private static final Logger logger = LogManager.getLogger(HibernateUtil.class);
+	private static Logger logger = LogManager.getLogger(HibernateUtil.class);
 
-	// Annotation based configuration
-	private static SessionFactory sessionFactory;
+	private static final SessionFactory sessionFactory;
 
-	private static SessionFactory buildSessionAnnotationFactory() {
+	static {
 		try {
+			// Create the SessionFactory from hibernate.cfg.xml
 			sessionFactory = new Configuration().configure().buildSessionFactory();
-			logger.info("Session Oluşturuldu");
-			return sessionFactory;
+			logger.info("Oturum isteği oluşturuldu");
 		} catch (Throwable ex) {
-			logger.error("Session Oluşturulamadı." + ex);
+			logger.error(ex);
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
 
 	public static SessionFactory getSessionFactory() {
-		if (sessionFactory == null)
-			sessionFactory = buildSessionAnnotationFactory();
 		return sessionFactory;
 	}
 }
