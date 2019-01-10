@@ -30,7 +30,7 @@ public class Language extends BaseDomain {
 	@Column(name = "last_update")
 	private Date lastUpdate;
 	
-	@OneToMany(mappedBy = "language", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
 	private Set<Film> filmSet;
 
 	@Override

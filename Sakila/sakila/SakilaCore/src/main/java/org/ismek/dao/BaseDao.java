@@ -1,7 +1,5 @@
 package org.ismek.dao;
 
-import java.util.List;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -10,6 +8,8 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.ismek.domain.BaseDomain;
 import org.ismek.utils.HibernateUtil;
+
+import java.util.List;
 
 public class BaseDao <T extends BaseDomain> {
 
@@ -54,5 +54,16 @@ public class BaseDao <T extends BaseDomain> {
 			logger.error(e);
 		}
 		return null;
+	}
+
+	public void delete(T entity) {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		try (Session session = sessionFactory.openSession()) {
+			Transaction tx2 = session.beginTransaction();
+			session.delete(entity);
+			tx2.commit();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
 	}
 }

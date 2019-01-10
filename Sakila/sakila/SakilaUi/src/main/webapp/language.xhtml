@@ -1,20 +1,89 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Dil Tanım</title>
-</head>
-<body>
-	<h:form>
-		<h:inputHidden value="${languageBean.id}"></h:inputHidden>
-		<h:inputText label="Dil Adı" value="${languageBean.name}"></h:inputText>
-		<br />
-		<h:commandButton action="${languageBean.kaydet}" value="Kaydet"></h:commandButton>
-		<br />
-		<h:inputText value="${languageBean.message}"></h:inputText>
-	</h:form>
-</body>
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Dil Tanım</title>
+    <h:outputStylesheet name="/css/bootstrap.min.css"/>
+</h:head>
+<h:body>
+    <h:form id="form" class="form-horizontal">
+
+        <div class="form-group">
+            <h2 style="text-align: center">Dil Tanım</h2>
+        </div>
+        <hr/>
+
+        <h:inputHidden value="${languageBean.id}"></h:inputHidden>
+
+        <h:messages id="messages"></h:messages>
+
+        <div class="form-group">
+            <h:outputLabel for="languageName" class="control-label col-sm-4">Dil</h:outputLabel>
+            <div class="col-sm-4">
+                <h:inputText id="languageName" value="#{languageBean.name}" class="form-control" validatorMessage="Dil Zorunludur">
+                    <f:validateRequired validatorId="languageNameValidator" for="languageName" />
+                </h:inputText>
+            </div>
+            <div class="col-sm-4">
+                <h:message for="languageName" style="color:red" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h:outputLabel for="lastUpdate" class="control-label col-sm-4">Son Güncelleme Tarihi</h:outputLabel>
+            <div class="col-sm-4">
+                <h:outputText  id="lastUpdate" value="#{languageBean.lastUpdate}" class="form-control">
+                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                </h:outputText>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="col-sm-2">
+                    <h:commandButton value="Kaydet" action="${languageBean.kaydet}" class="btn btn-success" style="width: 80px;"></h:commandButton>
+                </div>
+                <div class="col-sm-2">
+                    <h:commandButton value="Yeni" action="${languageBean.yeni}" class="btn btn-warning" style="width: 80px;"></h:commandButton>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <h:outputLabel value="${languageBean.message}"></h:outputLabel>
+            </div>
+        </div>
+
+        <h:dataTable binding="#{table}" value="#{languageBean.findAllLanguage()}" var="language" class="table table-striped table-hover table-bordered" >
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{language.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Dil</f:facet>
+                <h:outputText value="#{language.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Güncelleme Tarihi</f:facet>
+                <h:outputText value="#{language.lastUpdate}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Update</f:facet>
+                <h:commandButton action = "#{languageBean.guncelle(language)}" value="Update" class="btn btn-primary">
+                </h:commandButton>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton action = "#{languageBean.sil(language)}" value="Delete" class="btn btn-danger">
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
 </html>

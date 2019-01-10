@@ -1,11 +1,9 @@
 package org.ismek.service;
 
-import java.util.List;
-
-import org.ismek.dao.ActorDao;
 import org.ismek.dao.BaseDao;
-import org.ismek.domain.Actor;
 import org.ismek.domain.BaseDomain;
+
+import java.util.List;
 
 public class BaseService<T extends BaseDomain> {
 
@@ -25,5 +23,9 @@ public class BaseService<T extends BaseDomain> {
 	
 	public T findById(Long entityId) {
 		return dao.findById(entityId);
+	}
+
+	public void delete(T entity) {
+		dao.delete(entity);
 	}
 }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Film Tanım</title>
+    <h:outputStylesheet name="/css/bootstrap.min.css"/>
+</h:head>
+<h:body>
+    <h:form id="form" class="form-horizontal">
+
+        <div class="form-group">
+            <h2 style="text-align: center">Film Tanım</h2>
+        </div>
+        <hr/>
+
+        <h:inputHidden value="${filmBean.id}"></h:inputHidden>
+
+        <h:messages id="messages"></h:messages>
+
+        <div class="form-group">
+            <h:outputLabel for="title" class="control-label col-sm-4">Başlık</h:outputLabel>
+            <div class="col-sm-4">
+                <h:inputText id="title" value="#{filmBean.title}" class="form-control" validatorMessage="Başlık Zorunludur">
+                    <f:validateRequired validatorId="titleValidator" for="title" />
+                </h:inputText>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h:outputLabel for="description" class="control-label col-sm-4">Açıklama</h:outputLabel>
+            <div class="col-sm-4">
+                <h:inputTextarea id="description" value="#{filmBean.description}" class="form-control">
+                </h:inputTextarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h:outputLabel for="language" class="control-label col-sm-4">Dil</h:outputLabel>
+            <div class="col-sm-4">
+                <h:selectOneMenu id="language" value="#{filmBean.language}" class="form-control" converter="SelectItemToEntityConverter">
+                    <f:selectItems value="#{filmBean.findAllLanguage()}" var="language" itemLabel="#{language.name}" itemValue="#{language}" />
+                </h:selectOneMenu>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="col-sm-2">
+                    <h:commandButton value="Kaydet" action="${filmBean.kaydet}" class="btn btn-success" style="width: 80px;"></h:commandButton>
+                </div>
+                <div class="col-sm-2">
+                    <h:commandButton value="Yeni" action="${filmBean.yeni}" class="btn btn-warning" style="width: 80px;"></h:commandButton>
+                </div>
+            </div>
+        </div>
+
+        <h:dataTable binding="#{table}" value="#{filmBean.findAllFilm()}" var="film" class="table table-striped table-hover table-bordered" >
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{film.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Başlık</f:facet>
+                <h:outputText value="#{film.title}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Açıklama</f:facet>
+                <h:outputText value="#{film.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Dil</f:facet>
+                <h:outputText value="#{film.language.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Update</f:facet>
+                <h:commandButton action = "#{filmBean.guncelle(film)}" value="Update" class="btn btn-primary">
+                </h:commandButton>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton action = "#{filmBean.sil(film)}" value="Delete" class="btn btn-danger">
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>
