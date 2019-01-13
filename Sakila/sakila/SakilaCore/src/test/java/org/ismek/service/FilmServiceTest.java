@@ -10,7 +10,7 @@ import org.ismek.domain.Language;
 import org.junit.Ignore;
 import org.junit.Test;
 
-@Ignore
+//@Ignore
 public class FilmServiceTest {
 	
 	private static Logger logger = LogManager.getLogger(FilmServiceTest.class);
@@ -57,6 +57,19 @@ FilmService filmService = new FilmService();
 		Language language = new Language();
 		language.setName("YENİ DİL");
 		language.setLastUpdate(new Date());
+		
+		Film film = new Film();
+		film.setTitle("TİTLE");
+		film.setLanguage(language);
+		
+		Film savedFilm = filmService.save(film);
+		System.out.println(savedFilm.getTitle());
+	}
+	
+	@Test
+	public void saveWithLanguage2() {
+		LanguageService languageService = new LanguageService();
+		Language language = languageService.findByIdEager(1L);
 		
 		Film film = new Film();
 		film.setTitle("TİTLE");

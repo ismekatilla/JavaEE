@@ -7,9 +7,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.ismek.domain.BaseDomain;
+import org.ismek.queryfilterdto.QueryFilterDto;
 import org.ismek.utils.HibernateUtil;
 
 import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 public class BaseDao <T extends BaseDomain> {
 
@@ -65,5 +70,21 @@ public class BaseDao <T extends BaseDomain> {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+	}
+	
+	public List<T> findAllByQueryFilterDto(QueryFilterDto queryFilterDto) {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		try (Session session = sessionFactory.openSession()) {
+			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+			CriteriaQuery<T> query = criteriaBuilder.createQuery(entity);
+			Root<T> root = query.from(entity);
+			query.select(root);
+			queryFilterDto.addWhereClause(criteriaBuilder, query);
+			Query<T> createQuery = session.createQuery(query);
+			return (List<T>) createQuery.getResultList();
+		} catch (Exception e) {
+			logger.error(e);
+		}
+		return null;
 	}
 }

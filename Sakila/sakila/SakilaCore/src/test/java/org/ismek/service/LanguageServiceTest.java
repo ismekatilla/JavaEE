@@ -12,7 +12,7 @@ import org.ismek.domain.Language;
 import org.junit.Ignore;
 import org.junit.Test;
 
-@Ignore
+//@Ignore
 public class LanguageServiceTest {
 
 	private static Logger logger = LogManager.getLogger(LanguageServiceTest.class);
@@ -54,18 +54,12 @@ public class LanguageServiceTest {
 	@Test
 	public void findById() {
 		LanguageService languageService = new LanguageService();
-		Language language = languageService.findById(2L);
+		Language language = languageService.findById(1L);
 		System.out.println(language.getName());
-	}
-
-	@Test
-	public void findAllLanguageByFilmTest() {
-		List<Language> languageList = languageService.findAll();
-		for (Language language : languageList) {
-			Set<Film> filmSet = language.getFilmSet();
-			for (Film film : filmSet) {
-				System.out.println(language.getName() + " - " + film.getTitle());
-			}
+		
+		Set<Film> filmSet = language.getFilmSet();
+		for (Film film : filmSet) {
+			System.out.println(film.getTitle());
 		}
 	}
 }

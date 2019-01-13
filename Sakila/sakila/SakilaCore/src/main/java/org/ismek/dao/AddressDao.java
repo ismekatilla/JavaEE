@@ -23,14 +23,15 @@ public class AddressDao extends BaseDao<Address> {
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		try (Session session = sessionFactory.openSession()) {
 			String hql =
-					"select address from Address address " +
-					"where	1=1 ";
+					"select 	address " + 
+					"from 		Address address " +
+					"where		1=1 ";
 			if (addressQueryFilterDto.getCountryId() != null) {
-				hql += " and address.city.country.id = " + addressQueryFilterDto.getCountryId();
+				hql += " and address.city.country.countryId = " + addressQueryFilterDto.getCountryId();
 			}
 
 			if (addressQueryFilterDto.getCityId() != null) {
-				hql += " and address.city.id = " + addressQueryFilterDto.getCityId();
+				hql += " and address.city.cityId = " + addressQueryFilterDto.getCityId();
 			}
 			Query createQuery = session.createQuery(hql);
 			return (List<Address>) createQuery.list();
