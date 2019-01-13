@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+    <composite:attribute name="value"></composite:attribute>
+    <composite:attribute name="valueChangeEvent" method-signature="void action()"></composite:attribute>
+    <composite:attribute name="render"></composite:attribute>
+</composite:interface>
+
+<composite:implementation>
+    <div class="form-group">
+        <h:outputLabel for="countrySelect" class="control-label col-sm-4">Ülke</h:outputLabel>
+        <div class="col-sm-4">
+            <h:selectOneMenu id="countrySelect" value="#{cc.attrs.value}" class="form-control" converter="SelectItemToEntityConverter">
+                <f:selectItem itemLabel = "Ülke Seçiniz" />
+                <f:selectItems value="#{countryBean.findAllCountry()}" var="country" itemLabel="#{country.country}" itemValue="#{country}" />
+                <f:ajax listener="#{cc.attrs.valueChangeEvent}" render="#{cc.attrs.render}" />
+            </h:selectOneMenu>
+        </div>
+    </div>
+</composite:implementation>
+</html>

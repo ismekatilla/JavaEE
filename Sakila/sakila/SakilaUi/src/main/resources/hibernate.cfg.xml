@@ -11,11 +11,14 @@
         <property name="hibernate.connection.pool_size">1</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto"></property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
         <mapping class="org.ismek.domain.Actor" />
         <mapping class="org.ismek.domain.Film" />
         <mapping class="org.ismek.domain.Language" />
+        <mapping class="org.ismek.domain.Country" />
+        <mapping class="org.ismek.domain.City" />
+        <mapping class="org.ismek.domain.Address" />
     </session-factory>
 </hibernate-configuration>
