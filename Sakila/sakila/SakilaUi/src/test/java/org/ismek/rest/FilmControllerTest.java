@@ -12,6 +12,7 @@ import java.util.List;
 import org.ismek.domain.Film;
 import org.ismek.domain.Language;
 import org.ismek.service.LanguageService;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.google.gson.Gson;
@@ -22,6 +23,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 
+@Ignore
 public class FilmControllerTest {
 
 	@Test

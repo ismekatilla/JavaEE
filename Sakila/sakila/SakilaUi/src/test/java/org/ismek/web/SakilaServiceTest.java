@@ -3,6 +3,7 @@ package org.ismek.web;
 import org.ismek.client.SakilaFilmDto;
 import org.ismek.client.SakilaWebService;
 import org.ismek.client.SakilaWebServiceImplService;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.xml.namespace.QName;
@@ -11,6 +12,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+@Ignore
 public class SakilaServiceTest {
 
     @Test
