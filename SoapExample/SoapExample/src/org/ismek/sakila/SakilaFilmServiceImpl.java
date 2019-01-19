@@ -11,21 +11,21 @@ public class SakilaFilmServiceImpl implements SakilaFilmService {
 	@Override
 	public FilmDto[] findAllFilm() {
 		
-		FilmDto[] filmDtoArray = new FilmDto[1];
-		FilmDto fff = new FilmDto();
-		fff.setTitle("TİTLE");
-		filmDtoArray[0] = fff;
+//		FilmDto[] filmDtoArray = new FilmDto[1];
+//		FilmDto fff = new FilmDto();
+//		fff.setTitle("TİTLE");
+//		filmDtoArray[0] = fff;
 		
-//		FilmService filmService = new FilmService();
-//		List<Film> filmList = filmService.findAll();
-//		FilmDto[] filmDtoArray = new FilmDto[filmList.size()];
-//		int index = 0;
-//		FilmConverter filmConverter = new FilmConverter();
-//		for (Film film : filmList) {
-//			FilmDto filmDto = filmConverter.convertToFilmDto(film);
-//			filmDtoArray[index] = filmDto;
-//			index++;
-//		}
+		FilmService filmService = new FilmService();
+		List<Film> filmList = filmService.findAll();
+		FilmDto[] filmDtoArray = new FilmDto[filmList.size()];
+		int index = 0;
+		FilmConverter filmConverter = new FilmConverter();
+		for (Film film : filmList) {
+			FilmDto filmDto = filmConverter.convertToFilmDto(film);
+			filmDtoArray[index] = filmDto;
+			index++;
+		}
 		return filmDtoArray;
 	}
 }
