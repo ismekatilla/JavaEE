@@ -1,0 +1,36 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from SakilaFilmServiceImplService WSDL service -->
+
+  <service name="SakilaFilmServiceImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://sakila.ismek.org"/>
+      <parameter name="wsdlServiceElement" value="SakilaFilmServiceImplService"/>
+      <parameter name="schemaQualified" value="http://dto.sakila.ismek.org,http://sakila.ismek.org"/>
+      <parameter name="wsdlServicePort" value="SakilaFilmServiceImpl"/>
+      <parameter name="className" value="org.ismek.sakila.SakilaFilmServiceImplSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="SakilaFilmServiceImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="findAllFilm" qname="operNS:findAllFilm" xmlns:operNS="http://sakila.ismek.org" returnQName="retNS:findAllFilmReturn" xmlns:retNS="http://sakila.ismek.org" returnType="rtns:FilmDto" xmlns:rtns="http://dto.sakila.ismek.org" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="findAllFilm"/>
+
+      <typeMapping
+        xmlns:ns="http://dto.sakila.ismek.org"
+        qname="ns:FilmDto"
+        type="java:org.ismek.sakila.dto.FilmDto"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
