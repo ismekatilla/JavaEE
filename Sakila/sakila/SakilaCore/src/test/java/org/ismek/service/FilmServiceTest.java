@@ -7,10 +7,11 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.ismek.domain.Film;
 import org.ismek.domain.Language;
+import org.ismek.dto.FilmRatingDto;
 import org.junit.Ignore;
 import org.junit.Test;
 
-@Ignore
+//@Ignore
 public class FilmServiceTest {
 
 	private static Logger logger = LogManager.getLogger(FilmServiceTest.class);
@@ -84,6 +85,22 @@ public class FilmServiceTest {
 		List<Film> filmList = filmService.findAllFilmByLanguageName("English");
 		for (Film film : filmList) {
 			System.out.println(film.getTitle() + " - " + film.getLanguage().getName());
+		}
+	}
+	
+	@Test
+	public void groupByRating() {
+		List<FilmRatingDto> filmRatingDtoList = filmService.groupByRating();
+		for (FilmRatingDto filmRatingDto : filmRatingDtoList) {
+			System.out.println(filmRatingDto.getRating() + " -- " + filmRatingDto.getCount());
+		}
+	}
+	
+	@Test
+	public void groupByRatingNative() {
+		List<FilmRatingDto> filmRatingDtoList = filmService.groupByRatingNative();
+		for (FilmRatingDto filmRatingDto : filmRatingDtoList) {
+			System.out.println(filmRatingDto.getRating() + " -- " + filmRatingDto.getCount());
 		}
 	}
 }

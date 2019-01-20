@@ -25,9 +25,12 @@ public class Film extends BaseDomain {
 	private String title;
 
 	@Column(name = "description")
-	@Type(type="text")
+	@Type(type = "text")
 	private String description;
-	
+
+	@Column(name = "rating")
+	private String rating;
+
 	@ManyToOne
 	@JoinColumn(name = "language_id", foreignKey = @ForeignKey(foreignKeyDefinition = "fk_film_language"))
 	private Language language;
@@ -60,6 +63,14 @@ public class Film extends BaseDomain {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getRating() {
+		return rating;
+	}
+
+	public void setRating(String rating) {
+		this.rating = rating;
 	}
 
 	public Language getLanguage() {
