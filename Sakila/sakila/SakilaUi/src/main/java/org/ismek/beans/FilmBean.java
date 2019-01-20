@@ -72,7 +72,7 @@ public class FilmBean {
 
 	public List<Film> findAllFilm() {
 		FilmService filmService = new FilmService();
-		return filmService.findAllFilmByLanguageName("Italian");
+		return filmService.findAllFilmByLanguageName("English");
 	}
 
 	public void guncelle(Film film) {
